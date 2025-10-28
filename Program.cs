@@ -76,6 +76,8 @@ static bool TryMove(int targetX, int targetY, string[] mazeRows)
         return false;
     else if (targetY > mazeRows.Length - 1)
         return false;
+    else if (!" *".Contains(mazeRows[targetY][targetX]))
+        return false;
     else
         return true;
 }
