@@ -2,14 +2,25 @@
 Console.Clear();
 Console.WriteLine("Welcome to a Maze Game!");
 Console.WriteLine("Navigate a maze with your arrow keys and try to reach the \"*\"!");
+Console.Write("Press enter to start playing!  ");
+Console.ReadKey();
+Console.Clear();
+
+// Get the map from the file and print it
 string[] mapRows = File.ReadAllLines("map.txt");
 foreach (string row in mapRows)
 {
     Console.WriteLine(row);
 }
-int[] currentCoordinates = [0, 2];
+Console.WriteLine("Navigate with your arrow keys to reach the \"*\"!");
+
+// Set up an int array to hold the initial x and y coordinates
+int[] currentCoordinates = [0, 0];
 Console.SetCursorPosition(currentCoordinates[0],currentCoordinates[1]);
+
+// Get ready to keep track of what the last key pressed was
 ConsoleKey lastKey;
+
 do {
     lastKey = Console.ReadKey(true).Key;
     switch (lastKey)
@@ -34,12 +45,26 @@ do {
             break;
     }
     Console.SetCursorPosition(currentCoordinates[0],currentCoordinates[1]);
+
+    //If the cursor is on top of the *, exit loop
+    if (mapRows[Console.CursorTop][Console.CursorLeft] == '*')
+    {
+        Thread.Sleep(500);
+        break;
+    }
 } while (lastKey != ConsoleKey.Escape);
 Console.Clear();
 
+// ASCII Art credit: patorjk.com/software/taag/
+string[] winScreen = File.ReadAllLines("winscreen.txt");
+foreach (string row in winScreen)
+{
+    Console.WriteLine(row);
+}
+
 static bool TryMove(int targetX, int targetY, string[] mazeRows)
 {
-    if (targetX >= 0 && targetX < mazeRows[0].Length && targetY >= 2 && targetY < mazeRows.Length + 2)
+    if (targetX >= 0 && targetX < mazeRows[0].Length && targetY >= 0 && targetY < mazeRows.Length)
     {
         return true;
     }
