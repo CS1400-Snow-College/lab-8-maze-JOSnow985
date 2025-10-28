@@ -21,6 +21,7 @@ Console.SetCursorPosition(currentCoordinates[0],currentCoordinates[1]);
 // Get ready to keep track of what the last key pressed was
 ConsoleKey lastKey;
 
+// Main loop, playing on the maze already printed
 do {
     lastKey = Console.ReadKey(true).Key;
     switch (lastKey)
@@ -46,13 +47,15 @@ do {
     }
     Console.SetCursorPosition(currentCoordinates[0],currentCoordinates[1]);
 
-    //If the cursor is on top of the *, exit loop
+    // If the cursor is on top of the *, exit loop
     if (mapRows[Console.CursorTop][Console.CursorLeft] == '*')
     {
         Thread.Sleep(500);
         break;
     }
 } while (lastKey != ConsoleKey.Escape);
+
+//Clear Map away
 Console.Clear();
 
 // ASCII Art credit: patorjk.com/software/taag/
@@ -62,12 +65,17 @@ foreach (string row in winScreen)
     Console.WriteLine(row);
 }
 
+// Method for checking if an attempted move is valid
 static bool TryMove(int targetX, int targetY, string[] mazeRows)
 {
-    if (targetX >= 0 && targetX < mazeRows[0].Length && targetY >= 0 && targetY < mazeRows.Length)
-    {
-        return true;
-    }
-    else
+    if (targetX < 0)
         return false;
+    else if (targetX > mazeRows[0].Length - 1)
+        return false;
+    else if (targetY < 0)
+        return false;
+    else if (targetY > mazeRows.Length - 1)
+        return false;
+    else
+        return true;
 }

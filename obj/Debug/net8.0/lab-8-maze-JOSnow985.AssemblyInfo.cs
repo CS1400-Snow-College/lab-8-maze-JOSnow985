@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lab-8-maze-JOSnow985")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+726c757de7fa5e2eb679af0516f8a3bc0337570d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf18be14ac8d8cfbb44d917e28990cbe9b4c5b35")]
 [assembly: System.Reflection.AssemblyProductAttribute("lab-8-maze-JOSnow985")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lab-8-maze-JOSnow985")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
