@@ -7,24 +7,28 @@ foreach (string row in mapRows)
 {
     Console.WriteLine(row);
 }
-int[] currentCoordinates = { 0, 2 };
+int[] currentCoordinates = [0, 2];
 Console.SetCursorPosition(currentCoordinates[0],currentCoordinates[1]);
-ConsoleKey lastKey = ConsoleKey.Enter;
+ConsoleKey lastKey;
 do {
     lastKey = Console.ReadKey(true).Key;
     switch (lastKey)
     {
         case ConsoleKey.UpArrow:
-            currentCoordinates[1] -= 1;
+            if (TryMove(currentCoordinates[0], currentCoordinates[1] - 1, mapRows) == true)
+                currentCoordinates[1]--;
             break;
         case ConsoleKey.DownArrow:
-            currentCoordinates[1] += 1;
+            if (TryMove(currentCoordinates[0], currentCoordinates[1] + 1, mapRows) == true)
+                currentCoordinates[1]++;
             break;
         case ConsoleKey.LeftArrow:
-            currentCoordinates[0] -= 1;
+            if (TryMove(currentCoordinates[0] - 1, currentCoordinates[1], mapRows) == true)
+                currentCoordinates[0]--;
             break;
         case ConsoleKey.RightArrow:
-            currentCoordinates[0] += 1;
+            if (TryMove(currentCoordinates[0] + 1, currentCoordinates[1], mapRows) == true)
+                currentCoordinates[0]++;
             break;
         default:
             break;
@@ -32,3 +36,13 @@ do {
     Console.SetCursorPosition(currentCoordinates[0],currentCoordinates[1]);
 } while (lastKey != ConsoleKey.Escape);
 Console.Clear();
+
+static bool TryMove(int targetX, int targetY, string[] mazeRows)
+{
+    if (targetX >= 0 && targetX < mazeRows[0].Length && targetY >= 2 && targetY < mazeRows.Length + 2)
+    {
+        return true;
+    }
+    else
+        return false;
+}
