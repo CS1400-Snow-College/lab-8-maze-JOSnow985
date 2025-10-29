@@ -1,9 +1,16 @@
 ﻿// Jaden Olvera, 10-28-25, Lab 8: Maze
+using System.Diagnostics;
+
 Console.Clear();
 Console.WriteLine("Welcome to a Maze Game!");
 Console.WriteLine("Navigate a maze with your arrow keys and try to reach the \"*\"!");
 Console.Write("Press enter to start playing!  ");
 Console.ReadKey();
+
+//Get a timer started to track how long it takes the user
+var runningTimer = Stopwatch.StartNew();
+
+// Clean up console for printing the map
 Console.Clear();
 
 // Get the map from the file and print it
@@ -64,6 +71,12 @@ foreach (string row in winScreen)
 {
     Console.WriteLine(row);
 }
+Console.WriteLine();
+
+//Stop our timer and print how long it took the user
+runningTimer.Stop();
+Console.WriteLine($"It only took you {runningTimer.Elapsed:mm\\:ss\\.f}, great job!");
+Console.WriteLine($"But I heard Jojo got {runningTimer.Elapsed - TimeSpan.FromMilliseconds(100):mm\\:ss\\.f}...");
 
 // Method for checking if an attempted move is valid
 static bool TryMove(int targetX, int targetY, string[] mazeRows)
